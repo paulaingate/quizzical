@@ -8,13 +8,13 @@ $dark-purple: #293264;
 
 body {
   margin: 0;
-  // min-width: 320px;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   justify-content: center;
   font-weight: 500;
   background-color: #F5F7FB;
   color: $dark-purple;
+  padding: 1em;
 }
 
 h1, h3 {
@@ -93,20 +93,4 @@ button:hover, button:active {
   gap: 1em;
   margin-top: 1.25em;
 }
-
-
-// .blue-blob, .yellow-blob {
-//   position: absolute;
-//   z-index: -1;
-// }
-
-// .blue-blob {
-//   bottom: 0;
-//   left: 0;
-// }
-
-// .yellow-blob {
-//   top: 0;
-//   right: 0;
-// }
 

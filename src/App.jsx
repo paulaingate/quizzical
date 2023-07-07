@@ -14,8 +14,10 @@ function App() {
    */
   const [replay, setReplay] = useState(0) 
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     fetch('https://opentdb.com/api.php?amount=5&type=multiple')
       .then(res => res.json())
       .then(data => setQuestions(data.results.map(item => {
@@ -29,11 +31,12 @@ function App() {
         return {
           question: he.decode(item.question),
           options: options,
-          correctAnswer: item.correct_answer,
+          correctAnswer: he.decode(item.correct_answer),
           userAnswer: '' //answer that the user has picked
         }
       })))
-      .catch(err => setError(err)) //TODO finish catch
+      .catch(err => setError(err))
+      .finally(() => setLoading(false))
   }, [replay])
 
   function playAgain() {
@@ -62,6 +65,14 @@ function App() {
       answersShown={showAnswers}
       selectAnswer={selectAnswer}
     />))
+
+    if(loading) {
+      return <h3>Loading...</h3>
+    }
+
+    if (error) {
+      return <h3>There was an error.</h3>
+    }
   
   return (
     <main>
